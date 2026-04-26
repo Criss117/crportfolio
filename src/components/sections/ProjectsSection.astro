@@ -9,10 +9,10 @@ import { SECTION } from "@/lib/constants";
 const allProjects = await getAllProjects();
 ---
 
-<section id={SECTION.PROJECTS} class="min-h-dvh space-y-20 py-20">
+<section id={SECTION.PROJECTS} class="min-h-dvh space-y-20 py-20 px-4 md:px-6">
   <header>
     <span class="uppercase text-sm block mb-4">01 / proyectos</span>
-    <h2 class="text-7xl font-bold uppercase tracking-tighter">
+    <h2 class="text-3xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter">
       Casos de estudio
     </h2>
   </header>
@@ -22,14 +22,14 @@ const allProjects = await getAllProjects();
         const isOdd = index % 2 === 0;
 
         return (
-          <article class="grid grid-cols-5 gap-x-12">
+          <article class="grid grid-cols-1 md:grid-cols-5 gap-x-12">
             <header
-              class:list={["space-y-10 col-span-3", isOdd ? "order-1" : ""]}
+              class:list={["space-y-10 col-span-1 md:col-span-3", isOdd ? "lg:order-1" : ""]}
             >
               <div class="flex items-center justify-between">
                 <div>
                   <a
-                    class="text-6xl font-bold underline-hover"
+                    class="text-2xl md:text-4xl lg:text-6xl font-bold underline-hover"
                     href={`/projects/${p.data.slug}`}
                   >
                     {p.data.title}
@@ -72,7 +72,7 @@ const allProjects = await getAllProjects();
               </p>
             </header>
 
-            <div class="col-span-2">
+            <div class="col-span-1 md:col-span-2">
               <Image
                 src={p.data.hero_image}
                 class="aspect-3/4 flex-1 object-cover object-center w-full"

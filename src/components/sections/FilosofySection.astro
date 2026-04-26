@@ -30,15 +30,15 @@ const ITEMS = [
   id={SECTION.FILOSOFY}
   class="space-y-16 min-h-dvh flex items-center justify-center flex-col"
 >
-  <div class="grid grid-cols-12 items-start">
-    <header class="sticky top-32 col-span-3 order-2">
+  <div class="grid grid-cols-1 md:grid-cols-12 items-start">
+    <header class="sticky top-32 col-span-1 md:col-span-3 order-2">
       <span class="uppercase text-sm block mb-4">02 / Filosofia</span>
-      <h2 class="text-5xl font-bold uppercase tracking-tighter">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tighter">
         mi filosofia
       </h2>
     </header>
-    <div class="col-span-9 order-1 space-y-8">
-      <h3 class="text-6xl font-base text-balance">
+    <div class="col-span-1 md:col-span-9 order-1 space-y-8">
+      <h3 class="text-3xl md:text-4xl lg:text-6xl font-base text-balance">
         No solo construyo interfaces.
         <span class="text-accent font-bold">Diseño soluciones técnicas</span>
         orientadas a producto, <span class="text-accent font-bold"
@@ -53,7 +53,7 @@ const ITEMS = [
       </p>
     </div>
   </div>
-  <div class="flex gap-x-6">
+  <div class="flex flex-col md:flex-row gap-4 md:gap-x-6">
     {
       ITEMS.map((i) => (
         <article class="p-4 border border-accent/10 w-full flex gap-x-4">

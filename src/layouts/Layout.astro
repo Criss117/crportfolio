@@ -12,7 +12,7 @@ const { onHome = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="">
+<html lang="es" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -31,7 +31,7 @@ const { onHome = false } = Astro.props;
       document.documentElement.classList.add(theme);
     </script>
   </head>
-  <body>
+  <body class="overflow-x-hidden">
     <MainLayout onHome={onHome} />
     <slot />
     <FooterSection />

@@ -24,20 +24,20 @@ const STACK = [
 
 <section
   id={SECTION.STACK}
-  class="space-y-16 min-h-dvh flex items-center justify-center flex-col"
+  class="space-y-16 min-h-dvh flex items-center justify-center flex-col py-8 md:py-12"
 >
   <TechSlider />
-  <div class="grid grid-cols-12 gap-x-4">
-    <header class="sticky top-32 col-span-3 self-start">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-4">
+    <header class="sticky top-32 col-span-1 md:col-span-3 self-start">
       <span class="uppercase text-sm block mb-4">03 / CAPACIDADES</span>
-      <h2 class="text-5xl font-bold uppercase tracking-tighter">EL STACK</h2>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tighter">EL STACK</h2>
       <p class="text-sm text-tertiary">
         La eleccion de tecnologias y herramientas es una decisión que se toma
         cuidadosamente, y que puede tener un impacto significativo en la
         experiencia del usuario.
       </p>
     </header>
-    <div class="col-span-9">
+    <div class="col-span-1 md:col-span-9">
       {
         STACK.map((s) => (
           <article class="py-12 flex justify-between items-center group cursor-default border-b border-gray-300">
