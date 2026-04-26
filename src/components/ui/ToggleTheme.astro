@@ -1,0 +1,19 @@
+---
+import Moon from "@/components/icons/moon.svg";
+import Sun from "@/components/icons/sun.svg";
+
+interface Props {
+  moonClass?: string;
+}
+
+const { moonClass } = Astro.props;
+---
+
+<button data-theme-toggle class="cursor-pointer">
+  <span class:list={["dark:hidden block", moonClass]} id="moon-icon">
+    <Moon />
+  </span>
+  <span class="hidden dark:block" id="sun-icon">
+    <Sun />
+  </span>
+</button>

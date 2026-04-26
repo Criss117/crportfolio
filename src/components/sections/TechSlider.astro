@@ -1,0 +1,140 @@
+---
+import AwsDark from "@/components/icons/aws_dark.svg";
+import AwsLight from "@/components/icons/aws_light.svg";
+import BunLight from "@/components/icons/bun.svg";
+import GitLight from "@/components/icons/git.svg";
+import GithubDark from "@/components/icons/github_dark.svg";
+import GithubLight from "@/components/icons/github_light.svg";
+import GoDark from "@/components/icons/go_dark.svg";
+import GoLight from "@/components/icons/go_light.svg";
+import JavaScriptLight from "@/components/icons/javascript.svg";
+import LinuxLight from "@/components/icons/linux.svg";
+import NestJSLight from "@/components/icons/nestjs.svg";
+import NextJSDark from "@/components/icons/nextjs_dark.svg";
+import NodeJSLight from "@/components/icons/nodejs.svg";
+import PNPMDark from "@/components/icons/pnpm_dark.svg";
+import PNPMLight from "@/components/icons/pnpm_light.svg";
+import PostgreSQLLight from "@/components/icons/postgresql.svg";
+import ReactDark from "@/components/icons/react_dark.svg";
+import ReactLight from "@/components/icons/react_light.svg";
+import SQLiteLight from "@/components/icons/sqlite.svg";
+import TanstackLight from "@/components/icons/tanstack.svg";
+import TypeScriptLight from "@/components/icons/typescript.svg";
+import VercelDark from "@/components/icons/vercel_dark.svg";
+import VercelLight from "@/components/icons/vercel_light.svg";
+
+const ICONS = {
+  Aws: {
+    Light: AwsLight,
+    Dark: AwsDark,
+  },
+  Bun: {
+    Light: BunLight,
+    Dark: BunLight,
+  },
+  Git: {
+    Light: GitLight,
+    Dark: GitLight,
+  },
+  Github: {
+    Light: GithubLight,
+    Dark: GithubDark,
+  },
+  Go: {
+    Light: GoLight,
+    Dark: GoDark,
+  },
+  JavaScript: {
+    Light: JavaScriptLight,
+    Dark: JavaScriptLight,
+  },
+  Linux: {
+    Light: LinuxLight,
+    Dark: LinuxLight,
+  },
+  NestJS: {
+    Light: NestJSLight,
+    Dark: NestJSLight,
+  },
+  NextJS: {
+    Light: NextJSDark,
+    Dark: NextJSDark,
+  },
+  NodeJS: {
+    Light: NodeJSLight,
+    Dark: NodeJSLight,
+  },
+  PNPM: {
+    Light: PNPMLight,
+    Dark: PNPMDark,
+  },
+  PostgreSQL: {
+    Light: PostgreSQLLight,
+    Dark: PostgreSQLLight,
+  },
+  React: {
+    Light: ReactLight,
+    Dark: ReactDark,
+  },
+  SQLite: {
+    Light: SQLiteLight,
+    Dark: SQLiteLight,
+  },
+  Tanstack: {
+    Light: TanstackLight,
+    Dark: TanstackLight,
+  },
+  TypeScript: {
+    Light: TypeScriptLight,
+    Dark: TypeScriptLight,
+  },
+  Vercel: {
+    Light: VercelLight,
+    Dark: VercelDark,
+  },
+} as const;
+
+const ICON_LIST = Object.values(ICONS).map((i) => ({
+  Dark: i.Dark,
+  Light: i.Light,
+}));
+---
+
+<section class="relative w-full overflow-hidden py-6">
+  <div class="marquee-track flex w-max items-center gap-12">
+    {
+      [...ICON_LIST, ...ICON_LIST].map((iconSet) => {
+        const LightIcon = iconSet.Light;
+        const DarkIcon = iconSet.Dark;
+
+        return (
+          <div class="relative size-12 shrink-0">
+            <div class="absolute inset-0 dark:opacity-0 transition-opacity">
+              <LightIcon class="size-12" />
+            </div>
+
+            <div class="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity">
+              <DarkIcon class="size-12" />
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .marquee-track {
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

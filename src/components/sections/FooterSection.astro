@@ -1,0 +1,45 @@
+---
+import { SOCIAL } from "@/lib/constants";
+
+const LINKS = [
+  {
+    name: "linkedin",
+    href: SOCIAL.LINKEDIN,
+  },
+  {
+    name: "github",
+    href: SOCIAL.GITHUB,
+  },
+] as const;
+---
+
+<footer class="bg-light-primary">
+  <div class="max-w-10/12 mx-auto">
+    <h3
+      class="uppercase text-9xl text-balance text-light-neutral font-bold py-20"
+    >
+      construyamos algo que pueda crecer.
+    </h3>
+
+    <div class="w-full h-0.5 bg-accent"></div>
+
+    <div class="h-48 flex items-center justify-between">
+      <div class="space-x-16">
+        {
+          LINKS.map((l) => (
+            <a
+              href={l.href}
+              target="_blank"
+              class="text-dark-tertiary uppercase"
+            >
+              {l.name}
+            </a>
+          ))
+        }
+      </div>
+      <p class="text-dark-tertiary">
+        {new Date().getFullYear()} Cristian Viveros
+      </p>
+    </div>
+  </div>
+</footer>

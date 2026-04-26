@@ -1,0 +1,57 @@
+---
+import GithubLight from "@/components/icons/github_light.svg";
+import GithubDark from "@/components/icons/github_dark.svg";
+import { SECTION } from "@/lib/constants";
+import FloatingIcon from "../ui/FloatingIcon.astro";
+---
+
+<section
+  id={SECTION.HERO}
+  class="min-h-dvh flex justify-center flex-col gap-y-8 animate-slide-in-top"
+>
+  <header class="space-y-8 z-10">
+    <h1 class="text-4xl font-semibold">
+      <span class="font-black text-5xl text-accent">Cristian</span>
+      - Desarrollador Web FullStack
+    </h1>
+    <h2 class="font-semibold text-7xl uppercase leading-[0.9] tracking-tighter">
+      Construyo productos web rápidos, escalables y listos para crecer.
+    </h2>
+    <p class="font-medium text-xl text-tertiary max-w-xl">
+      Desde MVPs listos para producción hasta arquitecturas diseñadas para alto
+      tráfico. Un enfoque de ingeniería centrado en el producto.
+    </p>
+  </header>
+  <div class="max-w-2/5 flex gap-x-5">
+    <a
+      href="https://github.com/Criss117"
+      target="_blank"
+      class="hover-btn hover-btn--accent py-6 border border-accent aspect-square flex items-center justify-center group"
+    >
+      <GithubLight
+        class="size-10 dark:hidden group-hover:hidden dark:group-hover:block"
+      />
+      <GithubDark
+        class="size-10 hidden dark:block group-hover:block dark:group-hover:hidden"
+      />
+    </a>
+    <div class="flex gap-x-5 flex-1">
+      <a
+        href={`#${SECTION.PROJECTS}`}
+        class:list={[
+          "hover-btn hover-btn--white",
+          "flex items-center justify-center py-6 border border-primary uppercase font-semibold ",
+          "flex-1 text-center hover:text-neutral hover:dark:text-neutral",
+        ]}>ver proyectos</a
+      >
+      <a
+        href={`#${SECTION.CONTACT}`}
+        class:list={[
+          "hover-btn hover-btn--black",
+          "flex items-center justify-center py-6 border border-primary uppercase font-semibold flex-1",
+          "text-center text-neutral hover:text-primary dark:text-neutral dark:hover:text-primary",
+        ]}>Contacto</a
+      >
+    </div>
+  </div>
+</section>

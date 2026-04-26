@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "tailwind-animations";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/* :root {
+  --accent: oklch(60% 0.15 250);
+  --primary: oklch(0.2178 0 0);
+  --secondary: oklch(0.9821 0 0);
+  --tertiary: oklch(0.3211 0 0);
+  --neutral: oklch(0.9821 0 0);
+}
+
+.dark {
+  --accent: oklch(70% 0.12 250);
+  --primary: oklch(0.9821 0 0);
+  --secondary: oklch(0.12 0 0);
+  --tertiary: oklch(0.72 0 0);
+  --neutral: oklch(0.18 0 0);
+} */
+
+:root {
+  --accent: oklch(70% 0.14 255); /* más presencia, sigue pastel */
+  --primary: oklch(22% 0.015 255);
+  --secondary: oklch(97% 0.008 250);
+  --tertiary: oklch(52% 0.02 255);
+  --neutral: oklch(93% 0.01 250);
+}
+
+.dark {
+  --accent: oklch(76% 0.13 255); /* resalta bien en dark */
+  --primary: oklch(96% 0.008 250);
+  --secondary: oklch(15% 0.015 255);
+  --tertiary: oklch(72% 0.018 255);
+  --neutral: oklch(21% 0.015 250);
+}
+@theme inline {
+  --color-light-primary: oklch(0.2178 0 0);
+  --color-light-secondary: oklch(0.9821 0 0);
+  --color-light-tertiary: oklch(0.3211 0 0);
+  --color-light-neutral: oklch(0.9821 0 0);
+
+  --color-dark-primary: oklch(0.9821 0 0);
+  --color-dark-secondary: oklch(0.12 0 0);
+  --color-dark-tertiary: oklch(0.72 0 0);
+  --color-dark-neutral: oklch(0.18 0 0);
+
+  --font-heading: var(--font-sans);
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-neutral: var(--neutral);
+  --font-sans: "Geist Variable", sans-serif;
+}
+
+@layer utilities {
+  .underline-hover {
+    @apply relative inline-block;
+  }
+
+  .underline-hover::after {
+    @apply content-['']
+      absolute 
+      left-0 
+      bottom-0 
+      h-0.5
+      w-full
+      bg-current
+      scale-x-0
+      origin-right
+      transition-transform
+      duration-300
+      ease-in-out
+      hover:scale-x-100
+      hover:origin-left;
+  }
+
+  .underline-hover:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+
+  .hover-btn {
+    @apply relative bg-transparent;
+  }
+
+  .hover-btn::after {
+    @apply content-['']
+     absolute 
+      -z-10
+      left-0 
+      bottom-0 
+      h-full
+      w-full
+      scale-x-0
+      origin-right
+      transition-transform
+      duration-300
+      ease-in-out
+      hover:scale-x-100
+      hover:origin-left;
+  }
+
+  .hover-btn:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+
+  .hover-btn--white::after {
+    @apply bg-primary;
+  }
+
+  .hover-btn--black::before {
+    @apply content-['']
+     absolute 
+      -z-10
+      left-0 
+      bottom-0 
+      h-full
+      w-full
+      bg-primary;
+  }
+
+  .hover-btn--black::after {
+    @apply bg-neutral;
+  }
+
+  .hover-btn--accent::after {
+    @apply bg-accent;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-neutral text-primary transition-colors duration-150;
+  }
+  ::selection {
+    background-color: var(--primary); /* El color del fondo */
+    color: var(--neutral); /* El color del texto */
+  }
+  html {
+    scroll-behavior: smooth;
+    @apply font-sans;
+  }
+}

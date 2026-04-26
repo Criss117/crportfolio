@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import { getAllProjects } from "@/lib/content/projects.collection";
+import GitHubLight from "@/components/icons/github_light.svg";
+import GitHubDark from "@/components/icons/github_dark.svg";
+import Globe from "@/components/icons/globe.svg";
+import { SECTION } from "@/lib/constants";
+
+const allProjects = await getAllProjects();
+---
+
+<section id={SECTION.PROJECTS} class="min-h-dvh space-y-20 py-20">
+  <header>
+    <span class="uppercase text-sm block mb-4">01 / proyectos</span>
+    <h2 class="text-7xl font-bold uppercase tracking-tighter">
+      Casos de estudio
+    </h2>
+  </header>
+  <div class="space-y-32">
+    {
+      allProjects.map((p, index) => {
+        const isOdd = index % 2 === 0;
+
+        return (
+          <article class="grid grid-cols-5 gap-x-12">
+            <header
+              class:list={["space-y-10 col-span-3", isOdd ? "order-1" : ""]}
+            >
+              <div class="flex items-center justify-between">
+                <div>
+                  <a
+                    class="text-6xl font-bold underline-hover"
+                    href={`/projects/${p.data.slug}`}
+                  >
+                    {p.data.title}
+                  </a>
+                  <p class="text-xl text-tertiary">
+                    {p.data.short_description}
+                  </p>
+                </div>
+                <div class="flex items-center gap-x-2">
+                  {p.data.repository && (
+                    <a
+                      href={p.data.repository}
+                      target="_blank"
+                      class="p-2 border rounded-full border-transparent hover:border-accent transition-colors duration-300"
+                    >
+                      <GitHubDark class="size-8 hidden dark:block" />
+                      <GitHubLight class="size-8 dark:hidden" />
+                    </a>
+                  )}
+                  {p.data.url && (
+                    <a
+                      href={p.data.url}
+                      target="_blank"
+                      class="p-2 border rounded-full border-transparent hover:border-accent transition-colors duration-300"
+                    >
+                      <Globe class="size-8" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <p class="text-balance text-tertiary">
+                {p.data.stack.join(", ")}
+              </p>
+
+              <div class="w-full h-px bg-accent" />
+
+              <p class="text-balance text-tertiary">
+                {p.data.long_description}
+              </p>
+            </header>
+
+            <div class="col-span-2">
+              <Image
+                src={p.data.hero_image}
+                class="aspect-3/4 flex-1 object-cover object-center w-full"
+                width={600}
+                height={800}
+                alt={p.data.title}
+              />
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+  <div class="flex justify-end">
+    <a href="/projects" class="hover:underline">Ver Todos los Proyectos...</a>
+  </div>
+</section>

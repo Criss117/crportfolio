@@ -1,0 +1,55 @@
+---
+import { SECTION } from "@/lib/constants";
+import TechSlider from "./TechSlider.astro";
+
+const STACK = [
+  {
+    name: "frontend",
+    list: ["React", "React Native", "NextJS", "Tanstack Start"],
+  },
+  {
+    name: "backend",
+    list: ["NodeJS", "BunJS", "Go", "NestJS"],
+  },
+  {
+    name: "cloud & data",
+    list: ["AWS", "Redis", "PostgreSQL", "SQLite", "Docker"],
+  },
+  {
+    name: "arquitectura",
+    list: ["Microservicios", "Serverless", "Edge"],
+  },
+] as const;
+---
+
+<section
+  id={SECTION.STACK}
+  class="space-y-16 min-h-dvh flex items-center justify-center flex-col"
+>
+  <TechSlider />
+  <div class="grid grid-cols-12 gap-x-4">
+    <header class="sticky top-32 col-span-3 self-start">
+      <span class="uppercase text-sm block mb-4">03 / CAPACIDADES</span>
+      <h2 class="text-5xl font-bold uppercase tracking-tighter">EL STACK</h2>
+      <p class="text-sm text-tertiary">
+        La eleccion de tecnologias y herramientas es una decisión que se toma
+        cuidadosamente, y que puede tener un impacto significativo en la
+        experiencia del usuario.
+      </p>
+    </header>
+    <div class="col-span-9">
+      {
+        STACK.map((s) => (
+          <article class="py-12 flex justify-between items-center group cursor-default border-b border-gray-300">
+            <h3 class="text-3xl uppercase font-semibold transition-all group-hover:translate-x-4">
+              {s.name}
+            </h3>
+            <span class="font-semibold text-gray-500 text-xl opacity-0 group-hover:opacity-100 transition-opacity">
+              {s.list.join(", ")}
+            </span>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

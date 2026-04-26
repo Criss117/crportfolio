@@ -1,23 +1,62 @@
+---
+import "@/styles/global.css";
+import MainLayout from "@/components/sections/MainHeader.astro";
+import { LOCAL_STORAGE_THEME_KEY } from "@/lib/constants";
+import FooterSection from "@/components/sections/FooterSection.astro";
+
+interface Props {
+  onHome?: boolean;
+}
+
+const { onHome = false } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Cristian Viveros</title>
+    <script is:inline define:vars={{ LOCAL_STORAGE_THEME_KEY }}>
+      const saved = localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
+
+      const theme =
+        saved ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      document.documentElement.classList.add(theme);
+    </script>
+  </head>
+  <body>
+    <MainLayout onHome={onHome} />
+    <slot />
+    <FooterSection />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<script>
+  import { LOCAL_STORAGE_THEME_KEY } from "@/lib/constants";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("[data-theme-toggle]");
+
+    console.log(buttons);
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const theme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) || "light";
+
+        const nextTheme = theme === "light" ? "dark" : "light";
+
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, nextTheme);
+
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(nextTheme);
+      });
+    });
+  });
+</script>

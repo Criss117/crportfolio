@@ -1,0 +1,114 @@
+---
+import { SECTION } from "@/lib/constants";
+import ToggleTheme from "@/components/ui/ToggleTheme.astro";
+
+interface Props {
+  onHome?: boolean;
+}
+
+const { onHome = false } = Astro.props;
+
+const ITEMS = [
+  {
+    name: "Proyectos",
+    href: `#${SECTION.PROJECTS}`,
+  },
+  {
+    name: "Filosofia",
+    href: `#${SECTION.FILOSOFY}`,
+  },
+  {
+    name: "Mi Stack",
+    href: `#${SECTION.STACK}`,
+  },
+  {
+    name: "Contacto",
+    href: `#${SECTION.CONTACT}`,
+  },
+] as const;
+---
+
+<header
+  data-show="complete"
+  class:list={[
+    "fixed w-full z-50",
+    "data-[show='complete']:h-48 data-[show='complete']:bg-neutral",
+    "data-[show='collapsed']:backdrop-blur-2xl data-[show='collapsed']:h-16",
+    "data-[show='hidden']:-translate-y-100",
+    "transition-all duration-300",
+  ]}
+  id="cr-header"
+>
+  <div class="flex justify-between max-w-9/12 mx-auto items-center h-full">
+    <a
+      href={onHome ? `#${SECTION.HERO}` : "/"}
+      class="text-3xl font-black text-accent">Cristian Viveros</a
+    >
+    <nav class="flex items-center space-x-3">
+      {
+        ITEMS.map((item) => (
+          <a href={item.href} class="underline-hover text-2xl font-semibold">
+            {item.name}
+          </a>
+        ))
+      }
+      <!-- <div class="group">
+        <a
+          href={`#${SECTION.ABOUT}`}
+          class="underline-hover text-2xl font-semibold">Sobre Mi</a
+        >
+        <div
+          class:list={[
+            "z-50 inset-0 absolute bg-light-primary h-0 w-full group-hover:h-[75dvh] ease-in-out overflow-hidden",
+            "transition-discrete duration-500",
+          ]}
+        >
+          <header class="h-48">
+            <div
+              class="flex justify-between max-w-9/12 mx-auto items-center h-full"
+            >
+              <a href="/" class="text-3xl font-black text-accent"
+                >Cristian Viveros</a
+              >
+              <nav class="flex items-center space-x-3">
+                {
+                  ITEMS.map((item) => (
+                    <a
+                      href={item.href}
+                      class="underline-hover text-2xl font-semibold text-white"
+                    >
+                      {item.name}
+                    </a>
+                  ))
+                }
+                <a
+                  href={`#${SECTION.ABOUT}`}
+                  class="underline-hover text-2xl font-semibold text-white"
+                  >Sobre Mi</a
+                >
+                <ToggleTheme moonClass="text-white" />
+              </nav>
+            </div>
+          </header>
+        </div>
+      </div> -->
+      <ToggleTheme />
+    </nav>
+  </div>
+</header>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector<HTMLElement>("#cr-header");
+
+    if (!header) return;
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        header.dataset.show = "collapsed";
+      } else {
+        header.dataset.show = "complete";
+      }
+    });
+  });
+</script>

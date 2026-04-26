@@ -1,0 +1,75 @@
+---
+import { SECTION } from "@/lib/constants";
+import Blocks from "@/components/icons/blocks.svg";
+import CircleDot from "@/components/icons/circle-dot.svg";
+import PocketKnife from "@/components/icons/pocket-knife.svg";
+
+const ITEMS = [
+  {
+    title: "arquitectura orientada al crecimiento",
+    decription:
+      "Diseño sistemas pensando en su evolución: MVP, crecimiento y escalabilidad. Defino estructuras que permitan iterar rápido hoy sin comprometer el rendimiento mañana.",
+    Icon: Blocks,
+  },
+  {
+    title: "Decisiones técnicas con contexto",
+    decription:
+      "Cada tecnología, patrón o arquitectura responde a una necesidad real: costos, tráfico esperado, mantenibilidad, velocidad de desarrollo y experiencia del usuario.",
+    Icon: CircleDot,
+  },
+  {
+    title: "Producto + Ingeniería",
+    decription:
+      "No solo implemento funcionalidades. Analizo requisitos, detecto cuellos de botella y propongo soluciones que impacten negocio, rendimiento y escalabilidad.",
+    Icon: PocketKnife,
+  },
+] as const;
+---
+
+<section
+  id={SECTION.FILOSOFY}
+  class="space-y-16 min-h-dvh flex items-center justify-center flex-col"
+>
+  <div class="grid grid-cols-12 items-start">
+    <header class="sticky top-32 col-span-3 order-2">
+      <span class="uppercase text-sm block mb-4">02 / Filosofia</span>
+      <h2 class="text-5xl font-bold uppercase tracking-tighter">
+        mi filosofia
+      </h2>
+    </header>
+    <div class="col-span-9 order-1 space-y-8">
+      <h3 class="text-6xl font-base text-balance">
+        No solo construyo interfaces.
+        <span class="text-accent font-bold">Diseño soluciones técnicas</span>
+        orientadas a producto, <span class="text-accent font-bold"
+          >rendimiento</span
+        > y <span class="text-accent font-bold">escalabilidad.</span>
+      </h3>
+      <p class="text-base text-balance text-tertiary">
+        Trabajo desde la definición del problema hasta la arquitectura y la
+        implementación, construyendo sistemas pensados para evolucionar con el
+        negocio. Entiendo que el código es una herramienta para alcanzar
+        objetivos empresariales, no un fin en sí mismo.
+      </p>
+    </div>
+  </div>
+  <div class="flex gap-x-6">
+    {
+      ITEMS.map((i) => (
+        <article class="p-4 border border-accent/10 w-full flex gap-x-4">
+          <div>
+            <i.Icon class="size-10 dark:text-primary" />
+          </div>
+          <div class="space-y-3">
+            <header class="h-1/3">
+              <h4 class="uppercase font-semibold text-2xl text-balance">
+                {i.title}
+              </h4>
+            </header>
+            <p class="text-balance h-2/3 text-tertiary">{i.decription}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

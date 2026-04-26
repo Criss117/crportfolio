@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getAllProjects } from "@/lib/content/projects.collection";
+
+const allProjects = await getAllProjects();
+---
+
+<Layout>
+  <pre><code>{JSON.stringify(allProjects, null, 2)}</code></pre>
+</Layout>

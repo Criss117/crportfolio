@@ -1,0 +1,111 @@
+---
+import Aws from "@/components/icons/aws_dark.svg";
+import Bun from "@/components/icons/bun.svg";
+import Git from "@/components/icons/git.svg";
+import Github from "@/components/icons/github_dark.svg";
+import Go from "@/components/icons/go_dark.svg";
+import JavaScript from "@/components/icons/javascript.svg";
+import Linux from "@/components/icons/linux.svg";
+import NestJS from "@/components/icons/nestjs.svg";
+import NextJS from "@/components/icons/nextjs_dark.svg";
+import NodeJS from "@/components/icons/nodejs.svg";
+import Pnpm from "@/components/icons/pnpm_dark.svg";
+import PostgreSQL from "@/components/icons/postgresql.svg";
+import React from "@/components/icons/react_dark.svg";
+import SQLite from "@/components/icons/sqlite.svg";
+import Tanstack from "@/components/icons/tanstack.svg";
+import TypeScript from "@/components/icons/typescript.svg";
+import Vercel from "@/components/icons/vercel_dark.svg";
+
+const ICONS = [
+  Aws,
+  Bun,
+  Git,
+  Github,
+  Go,
+  JavaScript,
+  Linux,
+  NestJS,
+  NextJS,
+  NodeJS,
+  Pnpm,
+  PostgreSQL,
+  React,
+  SQLite,
+  Tanstack,
+  TypeScript,
+  Vercel,
+] as const;
+---
+
+<div id="floating-icons-parent" class="relative w-full h-full overflow-hidden">
+  <div id="floating-icons-layer" class="absolute inset-0 pointer-events-none">
+  </div>
+</div>
+
+<script define:vars={{ ICONS }} is:inline>
+  const layer = document.getElementById("floating-icons-layer");
+
+  function getRandom(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function spawnIcon() {
+    const Icon = ICONS[Math.floor(Math.random() * ICONS.length)];
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "floating-icon";
+
+    const img = document.createElement("img");
+    img.src = Icon.src;
+    img.alt = "tech icon";
+
+    const size = getRandom(32, 56);
+
+    wrapper.style.left = `${getRandom(0, 90)}%`;
+    wrapper.style.top = `${getRandom(0, 90)}%`;
+    wrapper.style.width = `${size}px`;
+    wrapper.style.height = `${size}px`;
+
+    img.style.width = "100%";
+    img.style.height = "100%";
+
+    wrapper.appendChild(img);
+    layer.appendChild(wrapper);
+
+    setTimeout(() => {
+      wrapper.remove();
+    }, 2500);
+  }
+
+  setInterval(spawnIcon, 800);
+</script>
+
+<style>
+  .floating-icon {
+    position: absolute;
+    opacity: 0;
+    animation: float-fade 2.5s ease-out forwards;
+    will-change: transform, opacity;
+  }
+
+  @keyframes float-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(10px) scale(0.8);
+    }
+
+    20% {
+      opacity: 1;
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(-30px) scale(1.1);
+    }
+  }
+</style>
