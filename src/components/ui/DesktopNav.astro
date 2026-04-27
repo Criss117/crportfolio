@@ -1,0 +1,70 @@
+---
+import { SECTION } from "@/lib/constants";
+import ToggleTheme from "./ToggleTheme.astro";
+
+interface Props {
+  onHome?: boolean;
+  items: Array<{ name: string; href: string }>;
+}
+
+const { onHome = false, items: ITEMS } = Astro.props;
+---
+
+<div
+  class="hidden lg:flex justify-between max-w-11/12 lg:max-w-9/12 mx-auto items-center h-full"
+>
+  <a
+    href={onHome ? `#${SECTION.HERO}` : "/"}
+    class="text-3xl font-black text-accent">Cristian Viveros</a
+  >
+  <nav class="flex items-center space-x-3">
+    {
+      ITEMS.map((item) => (
+        <a href={item.href} class="underline-hover text-2xl font-semibold">
+          {item.name}
+        </a>
+      ))
+    }
+    <!-- <div class="group">
+        <a
+          href={`#${SECTION.ABOUT}`}
+          class="underline-hover text-2xl font-semibold">Sobre Mi</a
+        >
+        <div
+          class:list={[
+            "z-50 inset-0 absolute bg-light-primary h-0 w-full group-hover:h-[75dvh] ease-in-out overflow-hidden",
+            "transition-discrete duration-500",
+          ]}
+        >
+          <header class="h-48">
+            <div
+              class="flex justify-between max-w-9/12 mx-auto items-center h-full"
+            >
+              <a href="/" class="text-3xl font-black text-accent"
+                >Cristian Viveros</a
+              >
+              <nav class="flex items-center space-x-3">
+                {
+                  ITEMS.map((item) => (
+                    <a
+                      href={item.href}
+                      class="underline-hover text-2xl font-semibold text-white"
+                    >
+                      {item.name}
+                    </a>
+                  ))
+                }
+                <a
+                  href={`#${SECTION.ABOUT}`}
+                  class="underline-hover text-2xl font-semibold text-white"
+                  >Sobre Mi</a
+                >
+                <ToggleTheme moonClass="text-white" />
+              </nav>
+            </div>
+          </header>
+        </div>
+      </div> -->
+    <ToggleTheme />
+  </nav>
+</div>

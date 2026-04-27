@@ -12,4 +12,5 @@ export const SECTION = {
 export const SOCIAL = {
   GITHUB: "https://github.com/Criss117",
   LINKEDIN: "https://www.linkedin.com/in/cristian-viveros-69bab8129/",
+  EMAIL: "cristianviveros227@gmail.com",
 } as const;

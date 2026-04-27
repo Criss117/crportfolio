@@ -4,16 +4,17 @@ import StackSection from "@/components/sections/StackSection.astro";
 import HeroSection from "@/components/sections/HeroSection.astro";
 import FilosofySection from "@/components/sections/FilosofySection.astro";
 import ProjectsSection from "@/components/sections/ProjectsSection.astro";
+import ContactSection from "@/components/sections/ContactSection.astro";
 ---
 
 <Layout onHome>
-  <main
-    class="max-w-full xl:max-w-3/4 mx-auto overflow-x-hidden px-4 md:px-6 lg:px-8"
-  >
-    <HeroSection />
-
-    <ProjectsSection />
-    <FilosofySection />
-    <StackSection />
+  <main class="overflow-x-hidden">
+    <div class="max-w-full xl:max-w-3/4 mx-auto px-4 md:px-6 lg:px-8">
+      <HeroSection />
+      <ProjectsSection />
+      <FilosofySection />
+      <StackSection />
+    </div>
+    <ContactSection />
   </main>
 </Layout>

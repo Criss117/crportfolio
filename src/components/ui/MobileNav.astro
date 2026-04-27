@@ -1,0 +1,75 @@
+---
+import { SECTION } from "@/lib/constants";
+import Menu from "@/components/icons/menu.svg";
+
+interface Props {
+  onHome?: boolean;
+  items: Array<{ name: string; href: string }>;
+}
+
+const { onHome = false, items: ITEMS } = Astro.props;
+---
+
+<div class="lg:hidden flex justify-between mx-4 items-center h-full">
+  <a
+    href={onHome ? `#${SECTION.HERO}` : "/"}
+    class="text-3xl font-black text-accent">Cristian Viveros</a
+  >
+  <button id="cr-open-mobile-nav">
+    <Menu class="size-8" />
+  </button>
+  <div
+    id="cr-mobile-nav-items"
+    data-show="false"
+    class:list={[
+      "z-50 inset-0 absolute bg-light-primary h-0 w-full ease-in-out overflow-hidden transition-all duration-300",
+      "data-[show='true']:h-dvh",
+      "data-[show='false']:h-0",
+    ]}
+  >
+    <div class="flex justify-end h-48 px-7">
+      <button id="cr-close-mobile-nav">
+        <Menu class="size-8" />
+      </button>
+    </div>
+    <nav class="flex flex-col gap-y-12 h-full pt-20 px-7">
+      {
+        ITEMS.map((item) => (
+          <a
+            href={item.href}
+            class="underline-hover text-4xl font-semibold w-fit nav-anchor"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector<HTMLElement>("#cr-mobile-nav-items");
+    const openBtn = document.querySelector<HTMLElement>("#cr-open-mobile-nav");
+    const closeBtn = document.querySelector<HTMLElement>(
+      "#cr-close-mobile-nav",
+    );
+    const navAnchors = document.querySelectorAll<HTMLElement>(".nav-anchor");
+
+    if (!nav || !openBtn || !closeBtn || !navAnchors.length) return;
+
+    openBtn.addEventListener("click", () => {
+      nav.dataset.show = "true";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      nav.dataset.show = "false";
+    });
+
+    navAnchors.forEach((anchor) => {
+      anchor.addEventListener("click", () => {
+        nav.dataset.show = "false";
+      });
+    });
+  });
+</script>
