@@ -1,31 +1,57 @@
 # ══════════════════════════════════════════════════════════════
+
 # CASE STUDY — Plantilla MDX para agentes
+
 #
-# Ubicación: src/content/projects/<slug>.mdx
+
+# Ubicación: portfolio/case-study.mdx
+
 # Formato: MDX (Markdown + JSX). Se renderiza en Astro con
-#          @astrojs/mdx y estilos via Tailwind CSS v4.
+
+# @astrojs/mdx y estilos via Tailwind CSS v4.
+
 #
+
 # REGLAS PARA EL AGENTE:
+
 # - No inventar datos: si no hay info suficiente, dejar vacío ("")
-#   o el placeholder "TODO: ...".
+
+# o el placeholder "TODO: ...".
+
 # - Mantener el orden y los nombres de las claves del frontmatter.
+
 # - Fechas siempre en formato ISO "YYYY-MM-DD".
+
 # - "slug" debe ser kebab-case y coincidir con la URL.
+
 # - El body es MDX: usa <div>, <section>, <article>, etc. con
-#   clases de Tailwind. NO uses estilos inline.
+
+# clases de Tailwind. NO uses estilos inline.
+
 # - Las imágenes del hero y galería se definen en frontmatter;
-#   el layout las lee desde `data.images`. En el body solo se
-#   escribe contenido estructural.
+
+# el layout las lee desde `data.images`. En el body solo se
+
+# escribe contenido estructural.
+
 # - DENTRO de elementos JSX (span, h2, h3, p), envuelve todo
-#   el texto en {"..."} para evitar que MDX lo envuelva en
-#   párrafos adicionales.
+
+# el texto en {"..."} para evitar que MDX lo envuelva en
+
+# párrafos adicionales.
+
 # - Las tres secciones de BODY son OBLIGATORIAS. El usuario
-#   puede solicitar secciones adicionales; siempre respetar
-#   la paleta, el espaciado y las clases del sistema.
+
+# puede solicitar secciones adicionales; siempre respetar
+
+# la paleta, el espaciado y las clases del sistema.
+
 # ══════════════════════════════════════════════════════════════
 
 ---
+
 # ── Identidad básica ─────────────────────────────────────────
+
 title: "Nombre del proyecto"
 slug: "nombre-del-proyecto"
 summary: "Resumen de 1-2 frases: qué es, qué problema resuelve y con qué tecnología clave."
@@ -37,87 +63,96 @@ featured: false
 priority: 0
 
 # ── Contexto del proyecto ────────────────────────────────────
+
 type: "personal" # personal | freelance | client | opensource | academic | work
 role: "TODO: tu rol"
 team:
-  size: 1
-  solo: true
+size: 1
+solo: true
 
 # ── Links y stack ────────────────────────────────────────────
+
 links:
-  repo: "https://github.com/usuario/repo"
-  demo: ""
-  docs: ""
-  npm: ""
+repo: "https://github.com/usuario/repo"
+demo: ""
+docs: ""
+npm: ""
 
 stack:
-  - "TODO: tecnología 1"
-  - "TODO: tecnología 2"
+
+- "TODO: tecnología 1"
+- "TODO: tecnología 2"
 
 # ── Highlights ───────────────────────────────────────────────
+
 # Logros/decisiones técnicas relevantes (no descripción genérica).
+
 highlights:
-  - "TODO: highlight 1"
-  - "TODO: highlight 2"
+
+- "TODO: highlight 1"
+- "TODO: highlight 2"
 
 # ── Imágenes ─────────────────────────────────────────────────
+
 # Referencias al repo remoto; el layout arma las URLs.
+
 images:
-  hero:
-    ext: "png"
-    alt: "TODO: descripción accesible"
-  cover:
-    ext: "png"
-    alt: "TODO: descripción"
-  gallery:
-    - name: "1"
-      ext: "png"
-      alt: "TODO: screenshot 1"
-      caption: ""
-    - name: "2"
-      ext: "png"
-      alt: "TODO: screenshot 2"
-      caption: ""
+hero:
+ext: "png"
+alt: "TODO: descripción accesible"
+cover:
+ext: "png"
+alt: "TODO: descripción"
+gallery: - name: "1"
+ext: "png"
+alt: "TODO: screenshot 1"
+caption: "" - name: "2"
+ext: "png"
+alt: "TODO: screenshot 2"
+caption: ""
 
 # ── SEO ──────────────────────────────────────────────────────
+
 seo:
-  metaTitle: ""
-  metaDescription: ""
+metaTitle: ""
+metaDescription: ""
 
 # ── Metadatos internos del agente ────────────────────────────
+
 generatedBy: "agent"
 generatedAt: "YYYY-MM-DDTHH:MM:SSZ"
 schemaVersion: 1
+
 ---
 
-{/* ═══════════════════════════════════════════════════════════ */}
-{/*  PALETA DE COLORES — No usar valores raw. Solo estas        */}
-{/*  clases Tailwind v4, que responden al tema light/dark.      */}
-{/*                                                             */}
-{/*  text-accent      → azul (semántico: acción/label)         */}
-{/*  text-primary     → oscuro en light / claro en dark        */}
-{/*  text-secondary   → claro en light / oscuro en dark        */}
-{/*  text-tertiary    → gris intermedio (body, captions)       */}
-{/*                                                             */}
-{/*  bg-primary       → fondo oscuro (secciones invertidas)    */}
-{/*  bg-secondary     → fondo claro en light / oscuro en dark  */}
-{/*  bg-accent        → azul (solo para botones)               */}
-{/*  bg-neutral       → gris muy sutil                         */}
-{/*                                                             */}
-{/*  border-primary/20   → bordes sutiles (cards, líneas)      */}
-{/*  border-secondary/20 → bordes sobre fondos invertidos      */}
-{/*                                                             */}
-{/*  Espaciado vertical estándar: py-20                        */}
-{/*  Ancho contenido: max-w-full xl:max-w-3/4 mx-auto          */}
-{/*  Full-bleed: -mx-4 md:-mx-6 lg:-mx-8 + padding restaurado  */}
-{/* ═══════════════════════════════════════════════════════════ */}
+{/_ ═══════════════════════════════════════════════════════════ */}
+{/* PALETA DE COLORES — No usar valores raw. Solo estas */}
+{/* clases Tailwind v4, que responden al tema light/dark. */}
+{/* */}
+{/* text-accent → azul (semántico: acción/label) */}
+{/* text-primary → oscuro en light / claro en dark */}
+{/* text-secondary → claro en light / oscuro en dark */}
+{/* text-tertiary → gris intermedio (body, captions) */}
+{/* */}
+{/* bg-primary → fondo oscuro (secciones invertidas) */}
+{/* bg-secondary → fondo claro en light / oscuro en dark */}
+{/* bg-accent → azul (solo para botones) */}
+{/* bg-neutral → gris muy sutil */}
+{/* */}
+{/* border-primary/20 → bordes sutiles (cards, líneas) */}
+{/* border-secondary/20 → bordes sobre fondos invertidos */}
+{/* */}
+{/* Espaciado vertical estándar: py-20 */}
+{/* Ancho contenido: max-w-full xl:max-w-3/4 mx-auto */}
+{/* Full-bleed: -mx-4 md:-mx-6 lg:-mx-8 + padding restaurado */}
+{/* ═══════════════════════════════════════════════════════════ _/}
 
-{/* ═══════════════════════════════════════════════════════════ */}
-{/*  01 / EL DESAFÍO — OBLIGATORIO                              */}
-{/*  Label arriba (full width). Grid de 2 cols debajo:          */}
-{/*  izquierda = título + resumen; derecha = descripción larga  */}
-{/*  + cards de 4 puntos clave (2×2 grid).                     */}
-{/* ═══════════════════════════════════════════════════════════ */}
+{/_ ═══════════════════════════════════════════════════════════ */}
+{/* 01 / EL DESAFÍO — OBLIGATORIO */}
+{/* Label arriba (full width). Grid de 2 cols debajo: */}
+{/* izquierda = título + resumen; derecha = descripción larga */}
+{/* + cards de 4 puntos clave (2×2 grid). */}
+{/* ═══════════════════════════════════════════════════════════ _/}
 
 <section class="max-w-full xl:max-w-3/4 mx-auto py-20">
 
@@ -179,26 +214,27 @@ schemaVersion: 1
         </article>
       </div>
     </div>
+
   </div>
 
 </section>
 
-{/* ═══════════════════════════════════════════════════════════ */}
-{/*  02 / INGENIERÍA & ARQUITECTURA — OBLIGATORIO               */}
-{/*  Fondo invertido (bg-secondary). Label arriba full-width.   */}
-{/*  Grid 2 cols: título | descripción.                         */}
-{/*  Pipeline: 4 cards horizontales con flechas (flex).         */}
-{/*  3 Decision cards debajo (grid 3 cols).                     */}
-{/*  TODOS los textos y bordes usan text-primary / border-primary */}
-{/*  porque bg-secondary ya invierte la paleta.                */}
-{/* ═══════════════════════════════════════════════════════════ */}
+{/_ ═══════════════════════════════════════════════════════════ */}
+{/* 02 / INGENIERÍA & ARQUITECTURA — OBLIGATORIO */}
+{/* Fondo invertido (bg-secondary). Label arriba full-width. */}
+{/* Grid 2 cols: título | descripción. */}
+{/* Pipeline: 4 cards horizontales con flechas (flex). */}
+{/* 3 Decision cards debajo (grid 3 cols). */}
+{/* TODOS los textos y bordes usan text-primary / border-primary */}
+{/* porque bg-secondary ya invierte la paleta. */}
+{/* ═══════════════════════════════════════════════════════════ _/}
 
 <section class="-mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 py-20 space-y-16 bg-secondary">
 
-  {/* Header */}
-  <span class="text-xs uppercase tracking-widest text-accent font-semibold block max-w-full xl:max-w-3/4 mx-auto">
-    {"02 / Ingeniería & Arquitectura"}
-  </span>
+{/_ Header _/}
+<span class="text-xs uppercase tracking-widest text-accent font-semibold block max-w-full xl:max-w-3/4 mx-auto">
+{"02 / Ingeniería & Arquitectura"}
+</span>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-6 max-w-full xl:max-w-3/4 mx-auto">
     <div>
@@ -213,7 +249,8 @@ schemaVersion: 1
     </div>
   </div>
 
-  {/* Pipeline diagram — 4 cards con flechas */}
+{/_ Pipeline diagram — 4 cards con flechas _/}
+
   <div class="space-y-4 max-w-full xl:max-w-3/4 mx-auto">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
       <span class="text-[10px] uppercase tracking-widest text-tertiary font-medium">
@@ -316,9 +353,11 @@ schemaVersion: 1
         </p>
       </article>
     </div>
+
   </div>
 
-  {/* Decision cards — 3 columnas */}
+{/_ Decision cards — 3 columnas _/}
+
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full xl:max-w-3/4 mx-auto">
     <article class="border border-primary/20 p-6 space-y-4">
       <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
@@ -373,16 +412,17 @@ schemaVersion: 1
         </p>
       </div>
     </article>
+
   </div>
 
 </section>
 
-{/* ═══════════════════════════════════════════════════════════ */}
-{/*  03 / RESULTADOS — OBLIGATORIO                              */}
-{/*  Misma estructura que 01: label arriba, grid 2 cols.        */}
-{/*  Izquierda: título + resumen. Derecha: métricas, estado,    */}
-{/*  aprendizajes y próximos pasos.                             */}
-{/* ═══════════════════════════════════════════════════════════ */}
+{/_ ═══════════════════════════════════════════════════════════ */}
+{/* 03 / RESULTADOS — OBLIGATORIO */}
+{/* Misma estructura que 01: label arriba, grid 2 cols. */}
+{/* Izquierda: título + resumen. Derecha: métricas, estado, */}
+{/* aprendizajes y próximos pasos. */}
+{/* ═══════════════════════════════════════════════════════════ _/}
 
 <section class="max-w-full xl:max-w-3/4 mx-auto py-20">
 
@@ -426,17 +466,18 @@ schemaVersion: 1
         </article>
       </div>
     </div>
+
   </div>
 
 </section>
 
-{/* ═══════════════════════════════════════════════════════════ */}
-{/*  SECCIONES ADICIONALES (opcional, solo si el usuario        */}
-{/*  las solicita expresamente). Reglas para agregar:            */}
-{/*  - Usar el mismo patrón: label arriba, grid 2 cols.         */}
-{/*  - Respetar siempre la paleta y los espaciados.             */}
-{/*  - Para fondos invertidos (como la 02), usar bg-secondary   */}
-{/*    y text-primary / border-primary en todo el contenido.    */}
-{/*  - Nunca usar dark: overrides dentro del MDX; la paleta     */}
-{/*    ya se invierte automáticamente con el tema.              */}
-{/* ═══════════════════════════════════════════════════════════ */}
+{/_ ═══════════════════════════════════════════════════════════ */}
+{/* SECCIONES ADICIONALES (opcional, solo si el usuario */}
+{/* las solicita expresamente). Reglas para agregar: */}
+{/* - Usar el mismo patrón: label arriba, grid 2 cols. */}
+{/* - Respetar siempre la paleta y los espaciados. */}
+{/* - Para fondos invertidos (como la 02), usar bg-secondary */}
+{/* y text-primary / border-primary en todo el contenido. */}
+{/* - Nunca usar dark: overrides dentro del MDX; la paleta */}
+{/* ya se invierte automáticamente con el tema. */}
+{/* ═══════════════════════════════════════════════════════════ _/}

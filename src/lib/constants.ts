@@ -15,6 +15,6 @@ export const SOCIAL = {
   EMAIL: "cristianviveros227@gmail.com",
 } as const;
 
-export const PROJECTS = ["fludge"] as const;
+export const PROJECTS = ["fludge", "crshort"] as const;
 
 export type Project = (typeof PROJECTS)[number];

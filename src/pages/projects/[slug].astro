@@ -18,14 +18,14 @@ const { Content } = await render(project);
 const data = project.data;
 
 const heroUrl = buildImageUrl({
-  project: data.projectName,
+  project: data.slug,
   name: "hero",
   ext: data.images.hero.ext,
   branch: "main",
 });
 
 const coverUrl = buildImageUrl({
-  project: data.projectName,
+  project: data.slug,
   name: "cover",
   ext: data.images.cover.ext,
   branch: "main",
@@ -34,7 +34,7 @@ const coverUrl = buildImageUrl({
 const galleryUrls = data.images.gallery.map((img) => ({
   ...img,
   url: buildImageUrl({
-    project: data.projectName,
+    project: data.slug,
     name: img.name,
     ext: img.ext,
     branch: "main",

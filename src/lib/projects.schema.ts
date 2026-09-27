@@ -35,11 +35,8 @@ const galleryImage = imageMeta.extend({
 
 export const caseStudySchema = z.object({
   // Identidad básica
-  projectName: z.enum(PROJECTS),
   title: z.string().min(1),
-  slug: z
-    .string()
-    .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "slug debe ser kebab-case"),
+  slug: z.enum(PROJECTS),
   summary: z.string().min(1),
   category: z.enum([
     "web",

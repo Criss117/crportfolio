@@ -29,7 +29,7 @@ const allProjects = await getCollection("projects").then((c) =>
           name: "hero",
           ext: project.images.hero.ext,
           branch: "main",
-          project: project.projectName,
+          project: project.slug,
         });
 
         return (

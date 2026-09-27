@@ -11,21 +11,21 @@ async function getProjects() {
   await Promise.all(
     PROJECTS.map(async (p) => {
       const uri = getGithubRawPortfolioUrl({
-        project: p.KEY,
+        project: p,
         branch: "main",
-        resource: "case-study.md",
+        resource: "case-study.mdx",
       });
 
       const res = await fetch(uri);
       if (!res.ok) {
         console.error(
-          `Error al descargar ${p.KEY}: ${res.status} ${res.statusText}`,
+          `Error al descargar ${p}: ${res.status} ${res.statusText}`,
         );
         return;
       }
 
       const md = await res.text();
-      const filePath = path.join(outputDir, `${p.KEY}.md`);
+      const filePath = path.join(outputDir, `${p}.mdx`);
       await writeFile(filePath, md, "utf-8");
       console.log(`Guardado: ${filePath}`);
     }),
