@@ -169,7 +169,7 @@ const galleryUrls = data.images.gallery.map((img) => ({
     {/*  CTA / DISPONIBILIDAD                                */}
     {/* ═══════════════════════════════════════════════════════ */}
     <section
-      class="-mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 py-16 md:py-24 bg-primary dark:bg-[oklch(10%_0.005_250)]"
+      class="-mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 py-16 md:py-24 bg-primary dark:bg-[oklch(10%_0.005_250)] selection:bg-secondary selection:text-primary dark:selection:bg-primary dark:selection:text-secondary"
     >
       <div
         class="max-w-full xl:max-w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
@@ -193,22 +193,6 @@ const galleryUrls = data.images.gallery.map((img) => ({
             pipelines o desarrollo integral de plataformas web con React Native
             y Elysia.
           </p>
-        </div>
-        <div
-          class="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start md:items-end lg:items-center gap-6 md:gap-8"
-        >
-          <a
-            href={`mailto:${SOCIAL.EMAIL}?subject=Charla técnica`}
-            class="hover-btn hover-btn--accent py-4 px-8 border border-accent uppercase font-semibold text-center bg-accent text-white"
-          >
-            Agendar charla técnica
-          </a>
-          <a
-            href={`mailto:${SOCIAL.EMAIL}`}
-            class="text-tertiary text-sm hover:text-accent transition-colors"
-          >
-            {SOCIAL.EMAIL}
-          </a>
         </div>
       </div>
     </section>
