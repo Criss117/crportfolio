@@ -16,11 +16,12 @@
 # - Las imágenes del hero y galería se definen en frontmatter;
 #   el layout las lee desde `data.images`. En el body solo se
 #   escribe contenido estructural.
-# - Para las cards de puntos clave, usa la estructura indicada
-#   abajo con las clases Tailwind sugeridas.
 # - DENTRO de elementos JSX (span, h2, h3, p), envuelve todo
 #   el texto en {"..."} para evitar que MDX lo envuelva en
 #   párrafos adicionales.
+# - Las tres secciones de BODY son OBLIGATORIAS. El usuario
+#   puede solicitar secciones adicionales; siempre respetar
+#   la paleta, el espaciado y las clases del sistema.
 # ══════════════════════════════════════════════════════════════
 
 ---
@@ -90,111 +91,352 @@ schemaVersion: 1
 ---
 
 {/* ═══════════════════════════════════════════════════════════ */}
-{/*  BODY — Secciones estructuradas con Tailwind CSS           */}
+{/*  PALETA DE COLORES — No usar valores raw. Solo estas        */}
+{/*  clases Tailwind v4, que responden al tema light/dark.      */}
+{/*                                                             */}
+{/*  text-accent      → azul (semántico: acción/label)         */}
+{/*  text-primary     → oscuro en light / claro en dark        */}
+{/*  text-secondary   → claro en light / oscuro en dark        */}
+{/*  text-tertiary    → gris intermedio (body, captions)       */}
+{/*                                                             */}
+{/*  bg-primary       → fondo oscuro (secciones invertidas)    */}
+{/*  bg-secondary     → fondo claro en light / oscuro en dark  */}
+{/*  bg-accent        → azul (solo para botones)               */}
+{/*  bg-neutral       → gris muy sutil                         */}
+{/*                                                             */}
+{/*  border-primary/20   → bordes sutiles (cards, líneas)      */}
+{/*  border-secondary/20 → bordes sobre fondos invertidos      */}
+{/*                                                             */}
+{/*  Espaciado vertical estándar: py-20                        */}
+{/*  Ancho contenido: max-w-full xl:max-w-3/4 mx-auto          */}
+{/*  Full-bleed: -mx-4 md:-mx-6 lg:-mx-8 + padding restaurado  */}
 {/* ═══════════════════════════════════════════════════════════ */}
 
-{/* ── 01 / EL DESAFÍO ─────────────────────────────────────── */}
-<section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 py-20">
+{/* ═══════════════════════════════════════════════════════════ */}
+{/*  01 / EL DESAFÍO — OBLIGATORIO                              */}
+{/*  Label arriba (full width). Grid de 2 cols debajo:          */}
+{/*  izquierda = título + resumen; derecha = descripción larga  */}
+{/*  + cards de 4 puntos clave (2×2 grid).                     */}
+{/* ═══════════════════════════════════════════════════════════ */}
 
-  {/* Columna izquierda: título de sección + resumen */}
-  <div class="space-y-6">
-    <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
-      {"01 / El desafío"}
-    </span>
-    <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
-      {"Definiendo el problema"}
-    </h2>
-    <p class="text-tertiary text-base md:text-lg leading-relaxed">
-      {"Resumen corto del contexto y la motivación del proyecto. 2–4 frases que expliquen por qué existía la necesidad."}
-    </p>
-  </div>
+<section class="max-w-full xl:max-w-3/4 mx-auto py-20">
 
-  {/* Columna derecha: descripción larga + cards de puntos clave */}
-  <div class="space-y-8">
-    <p class="text-primary text-base md:text-lg leading-relaxed">
-      {"Descripción más extensa del problema, los usuarios afectados, las limitaciones del estado previo y cualquier restricción de negocio o técnica relevante."}
-    </p>
+  <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
+    {"01 / El desafío"}
+  </span>
 
-    {/* Cards de puntos clave */}
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <article class="border border-primary/20 p-5 space-y-2">
-        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
-          {"Punto clave 1"}
-        </h3>
-        <p class="text-tertiary text-sm leading-relaxed">
-          {"Breve explicación de este punto específico."}
-        </p>
-      </article>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-6">
+    <div class="space-y-6">
+      <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
+        {"Definiendo el problema"}
+      </h2>
+      <p class="text-tertiary text-base md:text-lg leading-relaxed">
+        {"Resumen corto del contexto y la motivación del proyecto. 2–4 frases que expliquen por qué existía la necesidad."}
+      </p>
+    </div>
 
-      <article class="border border-primary/20 p-5 space-y-2">
-        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
-          {"Punto clave 2"}
-        </h3>
-        <p class="text-tertiary text-sm leading-relaxed">
-          {"Breve explicación de este punto específico."}
-        </p>
-      </article>
+    <div class="space-y-8">
+      <p class="text-primary text-base md:text-lg leading-relaxed">
+        {"Descripción más extensa del problema, los usuarios afectados, las limitaciones del estado previo y cualquier restricción de negocio o técnica relevante."}
+      </p>
 
-      <article class="border border-primary/20 p-5 space-y-2">
-        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
-          {"Punto clave 3"}
-        </h3>
-        <p class="text-tertiary text-sm leading-relaxed">
-          {"Breve explicación de este punto específico."}
-        </p>
-      </article>
+      {/* Cards de puntos clave — 2×2 grid */}
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <article class="border border-primary/20 p-5 space-y-2">
+          <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+            {"Punto clave 1"}
+          </h3>
+          <p class="text-tertiary text-sm leading-relaxed">
+            {"Breve explicación de este punto específico."}
+          </p>
+        </article>
 
-      <article class="border border-primary/20 p-5 space-y-2">
-        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
-          {"Punto clave 4"}
-        </h3>
-        <p class="text-tertiary text-sm leading-relaxed">
-          {"Breve explicación de este punto específico."}
-        </p>
-      </article>
+        <article class="border border-primary/20 p-5 space-y-2">
+          <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+            {"Punto clave 2"}
+          </h3>
+          <p class="text-tertiary text-sm leading-relaxed">
+            {"Breve explicación de este punto específico."}
+          </p>
+        </article>
+
+        <article class="border border-primary/20 p-5 space-y-2">
+          <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+            {"Punto clave 3"}
+          </h3>
+          <p class="text-tertiary text-sm leading-relaxed">
+            {"Breve explicación de este punto específico."}
+          </p>
+        </article>
+
+        <article class="border border-primary/20 p-5 space-y-2">
+          <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+            {"Punto clave 4"}
+          </h3>
+          <p class="text-tertiary text-sm leading-relaxed">
+            {"Breve explicación de este punto específico."}
+          </p>
+        </article>
+      </div>
     </div>
   </div>
 
 </section>
 
-{/* ── 02 / LA SOLUCIÓN (opcional, copiar y adaptar) ───────── */}
-<section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 py-20">
-  <div class="space-y-6">
-    <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
-      {"02 / La solución"}
-    </span>
-    <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
-      {"Cómo se resolvió"}
-    </h2>
-    <p class="text-tertiary text-base md:text-lg leading-relaxed">
-      {"Resumen de la arquitectura o enfoque elegido."}
-    </p>
+{/* ═══════════════════════════════════════════════════════════ */}
+{/*  02 / INGENIERÍA & ARQUITECTURA — OBLIGATORIO               */}
+{/*  Fondo invertido (bg-secondary). Label arriba full-width.   */}
+{/*  Grid 2 cols: título | descripción.                         */}
+{/*  Pipeline: 4 cards horizontales con flechas (flex).         */}
+{/*  3 Decision cards debajo (grid 3 cols).                     */}
+{/*  TODOS los textos y bordes usan text-primary / border-primary */}
+{/*  porque bg-secondary ya invierte la paleta.                */}
+{/* ═══════════════════════════════════════════════════════════ */}
+
+<section class="-mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 py-20 space-y-16 bg-secondary">
+
+  {/* Header */}
+  <span class="text-xs uppercase tracking-widest text-accent font-semibold block max-w-full xl:max-w-3/4 mx-auto">
+    {"02 / Ingeniería & Arquitectura"}
+  </span>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-6 max-w-full xl:max-w-3/4 mx-auto">
+    <div>
+      <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight text-primary">
+        {"Arquitectura y decisiones técnicas"}
+      </h2>
+    </div>
+    <div class="flex items-start">
+      <p class="text-tertiary text-base md:text-lg leading-relaxed">
+        {"Resumen del principio arquitectónico que guió el proyecto. 1–2 frases que conecten el desafío con la solución."}
+      </p>
+    </div>
   </div>
 
-  <div class="space-y-8">
-    <p class="text-primary text-base md:text-lg leading-relaxed">
-      {"Descripción detallada de la solución, decisiones técnicas clave, patrones aplicados y por qué se eligieron."}
-    </p>
+  {/* Pipeline diagram — 4 cards con flechas */}
+  <div class="space-y-4 max-w-full xl:max-w-3/4 mx-auto">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+      <span class="text-[10px] uppercase tracking-widest text-tertiary font-medium">
+        {"Diagrama esquemático de flujo de datos"}
+      </span>
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold">
+        {"Sincronización event-driven"}
+      </span>
+    </div>
+
+    <div class="flex flex-col md:flex-row md:items-stretch gap-0">
+      {/* Card 1 */}
+      <article class="border border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"Capa 1"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-primary">
+          {"Tecnología A"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Descripción de esta capa: qué hace, por qué se eligió, métrica clave."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"Métrica: <Xms"}
+        </p>
+      </article>
+
+      {/* Flecha desktop */}
+      <div class="hidden md:flex items-center justify-center border-y border-primary/20 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      {/* Flecha mobile */}
+      <div class="flex md:hidden items-center justify-center border-x border-primary/20 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+
+      {/* Card 2 */}
+      <article class="border border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"Capa 2"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-primary">
+          {"Tecnología B"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Descripción de esta capa: qué hace, por qué se eligió, métrica clave."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"Throughput: XK/s"}
+        </p>
+      </article>
+
+      {/* Flecha desktop */}
+      <div class="hidden md:flex items-center justify-center border-y border-primary/20 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      {/* Flecha mobile */}
+      <div class="flex md:hidden items-center justify-center border-x border-primary/20 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+
+      {/* Card 3 */}
+      <article class="border border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"Capa 3"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-primary">
+          {"Tecnología C"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Descripción de esta capa: qué hace, por qué se eligió, métrica clave."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"Eval: <Xms"}
+        </p>
+      </article>
+
+      {/* Flecha desktop */}
+      <div class="hidden md:flex items-center justify-center border-y border-primary/20 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      {/* Flecha mobile */}
+      <div class="flex md:hidden items-center justify-center border-x border-primary/20 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+
+      {/* Card 4 */}
+      <article class="border border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"Capa 4"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-primary">
+          {"Tecnología D"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Descripción de esta capa: qué hace, por qué se eligió, métrica clave."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"Storage: X"}
+        </p>
+      </article>
+    </div>
   </div>
+
+  {/* Decision cards — 3 columnas */}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full xl:max-w-3/4 mx-auto">
+    <article class="border border-primary/20 p-6 space-y-4">
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+        {"Decisión 01 · Categoría"}
+      </span>
+      <h3 class="text-lg font-semibold uppercase tracking-tight text-primary">
+        {"Título de la decisión"}
+      </h3>
+      <p class="text-tertiary text-sm leading-relaxed">
+        {"Explicación del problema, las alternativas evaluadas y por qué se eligió esta opción. Contexto técnico suficiente para que un lector entienda el trade-off."}
+      </p>
+      <div class="border-t border-primary/10 pt-4 mt-4">
+        <p class="text-xs text-tertiary leading-relaxed">
+          <span class="text-accent font-semibold">{"Impacto: "}</span>
+          {"Resultado concreto de esta decisión: métrica, riesgo mitigado o capacidad ganada."}
+        </p>
+      </div>
+    </article>
+
+    <article class="border border-primary/20 p-6 space-y-4">
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+        {"Decisión 02 · Categoría"}
+      </span>
+      <h3 class="text-lg font-semibold uppercase tracking-tight text-primary">
+        {"Título de la decisión"}
+      </h3>
+      <p class="text-tertiary text-sm leading-relaxed">
+        {"Explicación del problema, las alternativas evaluadas y por qué se eligió esta opción. Contexto técnico suficiente para que un lector entienda el trade-off."}
+      </p>
+      <div class="border-t border-primary/10 pt-4 mt-4">
+        <p class="text-xs text-tertiary leading-relaxed">
+          <span class="text-accent font-semibold">{"Garantía: "}</span>
+          {"Resultado concreto: propiedad del sistema que esta decisión asegura."}
+        </p>
+      </div>
+    </article>
+
+    <article class="border border-primary/20 p-6 space-y-4">
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+        {"Decisión 03 · Categoría"}
+      </span>
+      <h3 class="text-lg font-semibold uppercase tracking-tight text-primary">
+        {"Título de la decisión"}
+      </h3>
+      <p class="text-tertiary text-sm leading-relaxed">
+        {"Explicación del problema, las alternativas evaluadas y por qué se eligió esta opción. Contexto técnico suficiente para que un lector entienda el trade-off."}
+      </p>
+      <div class="border-t border-primary/10 pt-4 mt-4">
+        <p class="text-xs text-tertiary leading-relaxed">
+          <span class="text-accent font-semibold">{"Resultado: "}</span>
+          {"Resultado concreto: beneficio medible o capacidad futura habilitada."}
+        </p>
+      </div>
+    </article>
+  </div>
+
 </section>
 
-{/* ── 03 / RESULTADOS (opcional, copiar y adaptar) ────────── */}
-<section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 py-20">
-  <div class="space-y-6">
-    <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
-      {"03 / Resultados"}
-    </span>
-    <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
-      {"Impacto y estado"}
-    </h2>
-    <p class="text-tertiary text-base md:text-lg leading-relaxed">
-      {"Resumen de métricas o logros alcanzados."}
-    </p>
+{/* ═══════════════════════════════════════════════════════════ */}
+{/*  03 / RESULTADOS — OBLIGATORIO                              */}
+{/*  Misma estructura que 01: label arriba, grid 2 cols.        */}
+{/*  Izquierda: título + resumen. Derecha: métricas, estado,    */}
+{/*  aprendizajes y próximos pasos.                             */}
+{/* ═══════════════════════════════════════════════════════════ */}
+
+<section class="max-w-full xl:max-w-3/4 mx-auto py-20">
+
+  <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
+    {"03 / Resultados"}
+  </span>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-6">
+    <div class="space-y-6">
+      <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
+        {"Impacto y estado"}
+      </h2>
+      <p class="text-tertiary text-base md:text-lg leading-relaxed">
+        {"Resumen de métricas o logros alcanzados. 2–4 frases que cierren el caso con datos concretos."}
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <p class="text-primary text-base md:text-lg leading-relaxed">
+        {"Detalle de resultados medibles, aprendizajes clave y próximos pasos del proyecto. Si está en progreso, indicar qué falta y cuál es el roadmap."}
+      </p>
+
+      {/* Métricas o estado — cards opcionales */}
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <article class="border border-primary/20 p-5 space-y-2">
+          <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+            {"Métrica 1"}
+          </h3>
+          <p class="text-tertiary text-sm leading-relaxed">
+            {"Valor o logro cuantificable."}
+          </p>
+        </article>
+
+        <article class="border border-primary/20 p-5 space-y-2">
+          <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+            {"Métrica 2"}
+          </h3>
+          <p class="text-tertiary text-sm leading-relaxed">
+            {"Valor o logro cuantificable."}
+          </p>
+        </article>
+      </div>
+    </div>
   </div>
 
-  <div class="space-y-8">
-    <p class="text-primary text-base md:text-lg leading-relaxed">
-      {"Detalle de resultados medibles, aprendizajes y próximos pasos."}
-    </p>
-  </div>
 </section>
+
+{/* ═══════════════════════════════════════════════════════════ */}
+{/*  SECCIONES ADICIONALES (opcional, solo si el usuario        */}
+{/*  las solicita expresamente). Reglas para agregar:            */}
+{/*  - Usar el mismo patrón: label arriba, grid 2 cols.         */}
+{/*  - Respetar siempre la paleta y los espaciados.             */}
+{/*  - Para fondos invertidos (como la 02), usar bg-secondary   */}
+{/*    y text-primary / border-primary en todo el contenido.    */}
+{/*  - Nunca usar dark: overrides dentro del MDX; la paleta     */}
+{/*    ya se invierte automáticamente con el tema.              */}
+{/* ═══════════════════════════════════════════════════════════ */}
