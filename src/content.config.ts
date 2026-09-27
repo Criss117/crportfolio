@@ -1,24 +1,13 @@
-import { file, glob } from "astro/loaders";
-import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
+import { caseStudySchema } from "./lib/projects.schema";
 
 const projects = defineCollection({
   loader: glob({
-    pattern: "**/*.mdx",
     base: "./src/content/projects",
+    pattern: "**/*.md",
   }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      slug: z.string(),
-      short_description: z.string(),
-      stack: z.array(z.string()),
-      long_description: z.string(),
-      hero_image: image(),
-      url: z.url().optional(),
-      repository: z.url().optional(),
-      order: z.number(),
-    }),
+  schema: caseStudySchema,
 });
 
 export const collections = {

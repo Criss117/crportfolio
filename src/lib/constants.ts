@@ -10,7 +10,16 @@ export const SECTION = {
 } as const;
 
 export const SOCIAL = {
-  GITHUB: "https://github.com/Criss117",
+  GITHUB: "https://github.com/Criss117/",
   LINKEDIN: "https://www.linkedin.com/in/cristian-viveros-69bab8129/",
   EMAIL: "cristianviveros227@gmail.com",
 } as const;
+
+export const PROJECTS = [
+  {
+    KEY: "fludge",
+    URL: `${SOCIAL.GITHUB}fludge`,
+  },
+] as const;
+
+export type Project = (typeof PROJECTS)[number]["KEY"];
