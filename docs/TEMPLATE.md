@@ -1,37 +1,43 @@
----
 # ══════════════════════════════════════════════════════════════
-# CASE STUDY — Frontmatter base
+# CASE STUDY — Plantilla MDX para agentes
 #
-# Ubicación esperada en cada repo: /portfolio/case-study.md
-# Este archivo es generado/actualizado por un agente y consumido
-# por el portfolio en Astro (fetch remoto al repo, ej. via
-# raw.githubusercontent.com o la API de GitHub).
+# Ubicación: src/content/projects/<slug>.mdx
+# Formato: MDX (Markdown + JSX). Se renderiza en Astro con
+#          @astrojs/mdx y estilos via Tailwind CSS v4.
 #
-# Reglas para el agente que genera este archivo:
-# - No inventar datos: si no hay info suficiente, dejar el valor
-#   vacío ("") o el placeholder "TODO: ..." tal cual.
-# - Mantener el orden y los nombres de las claves. Si el proyecto
-#   no aplica un campo (ej. no tiene demo), dejarlo como "" y no
-#   eliminar la clave — el schema del portfolio espera que exista.
+# REGLAS PARA EL AGENTE:
+# - No inventar datos: si no hay info suficiente, dejar vacío ("")
+#   o el placeholder "TODO: ...".
+# - Mantener el orden y los nombres de las claves del frontmatter.
 # - Fechas siempre en formato ISO "YYYY-MM-DD".
-# - "slug" debe ser kebab-case y coincidir con el nombre que se
-#   quiere usar en la URL del portfolio (ej. /projects/fludge).
+# - "slug" debe ser kebab-case y coincidir con la URL.
+# - El body es MDX: usa <div>, <section>, <article>, etc. con
+#   clases de Tailwind. NO uses estilos inline.
+# - Las imágenes del hero y galería se definen en frontmatter;
+#   el layout las lee desde `data.images`. En el body solo se
+#   escribe contenido estructural.
+# - Para las cards de puntos clave, usa la estructura indicada
+#   abajo con las clases Tailwind sugeridas.
+# - DENTRO de elementos JSX (span, h2, h3, p), envuelve todo
+#   el texto en {"..."} para evitar que MDX lo envuelva en
+#   párrafos adicionales.
 # ══════════════════════════════════════════════════════════════
 
+---
 # ── Identidad básica ─────────────────────────────────────────
 title: "Nombre del proyecto"
 slug: "nombre-del-proyecto"
 summary: "Resumen de 1-2 frases: qué es, qué problema resuelve y con qué tecnología clave."
 category: "web" # web | mobile | fullstack | library | cli | api | desktop | otro
-date: "YYYY-MM-DD" # fecha de inicio del proyecto
-lastUpdate: "YYYY-MM-DD" # fecha de la última actualización relevante
+date: "YYYY-MM-DD"
+lastUpdate: "YYYY-MM-DD"
 status: "in-progress" # idea | in-progress | completed | archived | maintained
 featured: false
-priority: 0 # entero; desempata el orden cuando hay varios featured=true
+priority: 0
 
 # ── Contexto del proyecto ────────────────────────────────────
 type: "personal" # personal | freelance | client | opensource | academic | work
-role: "TODO: tu rol en el proyecto (ej. Full-stack developer)"
+role: "TODO: tu rol"
 team:
   size: 1
   solo: true
@@ -48,33 +54,28 @@ stack:
   - "TODO: tecnología 2"
 
 # ── Highlights ───────────────────────────────────────────────
-# Bullets cortos, orientados a logros/decisiones técnicas relevantes,
-# no a descripción genérica ("Usé X" no cuenta, "Reduje el tiempo de
-# build de 4min a 40s migrando a Turborepo" sí).
+# Logros/decisiones técnicas relevantes (no descripción genérica).
 highlights:
   - "TODO: highlight 1"
   - "TODO: highlight 2"
 
 # ── Imágenes ─────────────────────────────────────────────────
-# Los archivos reales deben vivir junto a este .md, ej:
-# /portfolio/images/hero.png, /portfolio/images/cover.png,
-# /portfolio/images/gallery-1.png, etc. Aquí solo se referencia
-# metadata; el portfolio arma la ruta final.
+# Referencias al repo remoto; el layout arma las URLs.
 images:
   hero:
     ext: "png"
-    alt: "TODO: descripción accesible de la captura principal"
+    alt: "TODO: descripción accesible"
   cover:
     ext: "png"
-    alt: "TODO: descripción de imagen secundaria (arquitectura, diagrama, etc.)"
+    alt: "TODO: descripción"
   gallery:
     - name: "1"
       ext: "png"
-      alt: "TODO: descripción de la screenshot 1"
+      alt: "TODO: screenshot 1"
       caption: ""
     - name: "2"
       ext: "png"
-      alt: "TODO: descripción de la screenshot 2"
+      alt: "TODO: screenshot 2"
       caption: ""
 
 # ── SEO ──────────────────────────────────────────────────────
@@ -82,29 +83,118 @@ seo:
   metaTitle: ""
   metaDescription: ""
 
-# ── Metadatos internos del agente (no editar manualmente) ────
-generatedBy: "agent" # agent | manual
+# ── Metadatos internos del agente ────────────────────────────
+generatedBy: "agent"
 generatedAt: "YYYY-MM-DDTHH:MM:SSZ"
 schemaVersion: 1
 ---
 
-<!--
-  CONTENIDO DEL BODY — aún sin definir el diseño final de render.
-  El agente puede usar estas secciones como guía mientras tanto;
-  bórralas o reemplázalas cuando definas el formato definitivo.
+{/* ═══════════════════════════════════════════════════════════ */}
+{/*  BODY — Secciones estructuradas con Tailwind CSS           */}
+{/* ═══════════════════════════════════════════════════════════ */}
 
-  ## Sobre el proyecto
-  Contexto: qué es, para quién, por qué se hizo.
+{/* ── 01 / EL DESAFÍO ─────────────────────────────────────── */}
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 py-20">
 
-  ## Problema
-  Qué problema específico resuelve o qué motivó el proyecto.
+  {/* Columna izquierda: título de sección + resumen */}
+  <div class="space-y-6">
+    <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
+      {"01 / El desafío"}
+    </span>
+    <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
+      {"Definiendo el problema"}
+    </h2>
+    <p class="text-tertiary text-base md:text-lg leading-relaxed">
+      {"Resumen corto del contexto y la motivación del proyecto. 2–4 frases que expliquen por qué existía la necesidad."}
+    </p>
+  </div>
 
-  ## Solución / Arquitectura
-  Cómo se resolvió, decisiones técnicas clave, diagramas si aplica.
+  {/* Columna derecha: descripción larga + cards de puntos clave */}
+  <div class="space-y-8">
+    <p class="text-primary text-base md:text-lg leading-relaxed">
+      {"Descripción más extensa del problema, los usuarios afectados, las limitaciones del estado previo y cualquier restricción de negocio o técnica relevante."}
+    </p>
 
-  ## Retos
-  Obstáculos técnicos relevantes y cómo se abordaron.
+    {/* Cards de puntos clave */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Punto clave 1"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Breve explicación de este punto específico."}
+        </p>
+      </article>
 
-  ## Resultados / Estado actual
-  Métricas si existen, estado del proyecto, aprendizajes.
--->
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Punto clave 2"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Breve explicación de este punto específico."}
+        </p>
+      </article>
+
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Punto clave 3"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Breve explicación de este punto específico."}
+        </p>
+      </article>
+
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Punto clave 4"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Breve explicación de este punto específico."}
+        </p>
+      </article>
+    </div>
+  </div>
+
+</section>
+
+{/* ── 02 / LA SOLUCIÓN (opcional, copiar y adaptar) ───────── */}
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 py-20">
+  <div class="space-y-6">
+    <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
+      {"02 / La solución"}
+    </span>
+    <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
+      {"Cómo se resolvió"}
+    </h2>
+    <p class="text-tertiary text-base md:text-lg leading-relaxed">
+      {"Resumen de la arquitectura o enfoque elegido."}
+    </p>
+  </div>
+
+  <div class="space-y-8">
+    <p class="text-primary text-base md:text-lg leading-relaxed">
+      {"Descripción detallada de la solución, decisiones técnicas clave, patrones aplicados y por qué se eligieron."}
+    </p>
+  </div>
+</section>
+
+{/* ── 03 / RESULTADOS (opcional, copiar y adaptar) ────────── */}
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 py-20">
+  <div class="space-y-6">
+    <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
+      {"03 / Resultados"}
+    </span>
+    <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
+      {"Impacto y estado"}
+    </h2>
+    <p class="text-tertiary text-base md:text-lg leading-relaxed">
+      {"Resumen de métricas o logros alcanzados."}
+    </p>
+  </div>
+
+  <div class="space-y-8">
+    <p class="text-primary text-base md:text-lg leading-relaxed">
+      {"Detalle de resultados medibles, aprendizajes y próximos pasos."}
+    </p>
+  </div>
+</section>

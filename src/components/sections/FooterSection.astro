@@ -1,37 +1,31 @@
 ---
-import { SOCIAL } from "@/lib/constants";
 
-const LINKS = [
-  {
-    name: "linkedin",
-    href: SOCIAL.LINKEDIN,
-  },
-  {
-    name: "github",
-    href: SOCIAL.GITHUB,
-  },
+const YEAR = new Date().getFullYear();
+
+const NAV_LINKS = [
+  { name: "Proyectos", href: "/#projects_section" },
+  { name: "Filosofía", href: "/#about_section" },
+  { name: "Mi Stack", href: "/#stack_section" },
+  { name: "Contacto", href: "/#contact_section" },
 ] as const;
 ---
 
-<footer class="bg-light-primary">
-  <div class="max-w-10/12 mx-auto">
-    <div class="h-48 flex items-center justify-between">
-      <div class="space-x-16">
-        {
-          LINKS.map((l) => (
-            <a
-              href={l.href}
-              target="_blank"
-              class="text-dark-tertiary uppercase"
-            >
-              {l.name}
-            </a>
-          ))
-        }
-      </div>
-      <p class="text-dark-tertiary">
-        {new Date().getFullYear()} Cristian Viveros
-      </p>
-    </div>
+<footer class="px-4 md:px-6 lg:px-8 border-t border-primary/10">
+  <div class="max-w-full xl:max-w-3/4 mx-auto h-20 flex items-center justify-between">
+    <p class="text-tertiary text-sm">
+      {`© ${YEAR} Cristian Viveros. Todos los derechos reservados.`}
+    </p>
+    <nav class="flex gap-x-6 md:gap-x-8">
+      {
+        NAV_LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="text-tertiary text-sm hover:text-accent transition-colors"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+    </nav>
   </div>
 </footer>

@@ -1,0 +1,329 @@
+---
+projectName: "fludge"
+title: "Fludge"
+slug: "fludge"
+summary: "Sistema POS full-stack en TypeScript con app móvil React Native y backend Elysia, para gestión de ventas, catálogo e inventario en organizaciones."
+category: "fullstack"
+date: "2026-08-20"
+lastUpdate: "2026-10-24"
+status: "in-progress"
+featured: false
+priority: 0
+
+type: "personal"
+role: "Full-stack developer"
+team:
+  size: 1
+  solo: true
+
+links:
+  repo: "https://github.com/Criss117/fludge"
+  demo: ""
+  docs: ""
+  npm: ""
+
+stack:
+  - "TypeScript"
+  - "Bun"
+  - "Turborepo"
+  - "Elysia"
+  - "oRPC"
+  - "React Native"
+  - "Expo"
+  - "HeroUI Native"
+  - "SQLite (LibSQL)"
+  - "Drizzle ORM"
+  - "Better Auth"
+  - "TanStack Query"
+  - "TanStack Form"
+  - "Zod 4"
+  - "Tailwind CSS v4"
+
+highlights:
+  - "Type-safety end-to-end con oRPC: los routers del backend generan automáticamente el contrato que el cliente consume, sin codegen ni duplicación manual de tipos"
+  - "Separación estricta API/Form: schemas de formularios duplican campos de commands sin importarlos, permitiendo evolución independiente de cada capa"
+  - "Domain Exceptions como primeras ciudadanas: errores de negocio mapeados a códigos HTTP semánticos con keys de i18n, eliminando capas de mapeo"
+  - "Arquitectura modular Clean/Hexagonal por módulo de negocio (iam, catalog, commerce) con containers de dependencias y separación commands/queries"
+
+images:
+  hero:
+    ext: "png"
+    alt: "Captura de pantalla principal de la app Fludge mostrando el dashboard de ventas"
+  cover:
+    ext: "png"
+    alt: "Diagrama de arquitectura del sistema Fludge con módulos y flujo de datos"
+  gallery:
+    - name: "1"
+      ext: "png"
+      alt: "Screenshot del módulo de ventas con listado de transacciones"
+      caption: "Módulo de ventas con filtros en tiempo real"
+    - name: "2"
+      ext: "png"
+      alt: "Screenshot del catálogo de productos con vista de grid y búsqueda"
+      caption: "Catálogo de productos con búsqueda y categorización"
+
+seo:
+  metaTitle: "Fludge — Sistema POS full-stack en TypeScript"
+  metaDescription: "Point of Sale construido con React Native, Elysia y oRPC. Gestión de ventas, catálogo e inventario con type-safety end-to-end."
+
+generatedBy: "agent"
+generatedAt: "2026-09-26T19:15:00Z"
+schemaVersion: 1
+---
+
+{/* ═══════════════════════════════════════════════════════════ */}
+{/* 01 / EL DESAFÍO */}
+{/* ═══════════════════════════════════════════════════════════ */}
+
+<section class="max-w-full xl:max-w-3/4 mx-auto py-20">
+
+  <span class="text-xs uppercase tracking-widest text-accent font-semibold block">
+    {"01 / El desafío"}
+  </span>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-6">
+    <div class="space-y-6">
+      <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight">
+        {"Un POS que no escala"}
+      </h2>
+      <p class="text-tertiary text-base md:text-lg leading-relaxed">
+        {"Los sistemas POS tradicionales fuerzan a pequeños negocios a elegir entre soluciones costosas en la nube o herramientas locales que no crecen con ellos. Ninguna opción ofrece type-safety, offline-first y una arquitectura extensible desde el día uno."}
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <p class="text-primary text-base md:text-lg leading-relaxed">
+        {"Fludge nace de la necesidad de un punto de venta que pueda operar en dispositivos móviles, sincronizar datos en tiempo real y mantener un modelo de dominio robusto sin depender de infraestructura externa costosa. El reto principal fue diseñar una arquitectura que soporte múltiples módulos de negocio (identidad, catálogo, comercio) sin acoplar el cliente al backend."}
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Type-safety real"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Eliminar la duplicación de tipos entre backend y frontend sin generación de código manual."}
+        </p>
+      </article>
+
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Offline-first"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"La app móvil debe funcionar sin conexión y sincronizar cuando vuelva la red, sin conflictos de datos."}
+        </p>
+      </article>
+
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Arquitectura limpia"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Cada módulo de negocio aísla su lógica con ports y adapters, facilitando tests y cambios futuros."}
+        </p>
+      </article>
+
+      <article class="border border-primary/20 p-5 space-y-2">
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-accent">
+          {"Developer experience"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Turborepo, hot-reload compartido y un solo comando para levantar toda la plataforma localmente."}
+        </p>
+      </article>
+    </div>
+
+  </div>
+
+  </div>
+
+</section>
+
+{/* ═══════════════════════════════════════════════════════════ */}
+{/* 02 / INGENIERÍA & ARQUITECTURA */}
+{/* ═══════════════════════════════════════════════════════════ */}
+
+<section class="-mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8 py-20 space-y-16 bg-primary dark:bg-[oklch(10%_0.005_250)] text-secondary dark:text-primary">
+
+  {/* Header: label arriba, título + descripción alineados */}
+  <span class="text-xs uppercase tracking-widest text-accent font-semibold block max-w-full xl:max-w-3/4 mx-auto">
+    {"02 / Ingeniería & Arquitectura"}
+  </span>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-6 max-w-full xl:max-w-3/4 mx-auto">
+    <div>
+      <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter leading-tight text-secondary dark:text-primary">
+        {"Arquitectura Desacoplada y Sincronización Offline-First"}
+      </h2>
+    </div>
+    <div class="flex items-start">
+      <p class="text-tertiary text-base md:text-lg leading-relaxed">
+        {"Diseñado bajo el principio de offline-first: la app nunca bloquea la venta por falta de conexión y el backend mantiene type-safety end-to-end sin generación de código."}
+      </p>
+    </div>
+  </div>
+
+  {/* Pipeline diagram: 4 cards horizontales con flechas */}
+  <div class="space-y-4 max-w-full xl:max-w-3/4 mx-auto">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+      <span class="text-[10px] uppercase tracking-widest text-tertiary font-medium">
+        {"Diagrama esquemático de flujo de datos (offline-first)"}
+      </span>
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold">
+        {"Sincronización event-driven"}
+      </span>
+    </div>
+
+    <div class="flex flex-col md:flex-row md:items-stretch gap-0">
+      {/* Card 1 */}
+      <article class="border border-secondary/20 dark:border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"Mobile Client"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-secondary dark:text-primary">
+          {"React Native + Expo"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"App móvil con SQLite local y estado offline-first via TanStack Query. Sync automático al recuperar conectividad. UI con HeroUI Native y Tailwind CSS v4."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"P99 Render: <16ms"}
+        </p>
+      </article>
+
+      {/* Flecha desktop */}
+      <div class="hidden md:flex items-center justify-center border-y border-secondary/20 dark:border-primary/20 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      {/* Flecha mobile */}
+      <div class="flex md:hidden items-center justify-center border-x border-secondary/20 dark:border-primary/20 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+
+      {/* Card 2 */}
+      <article class="border border-secondary/20 dark:border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"API Router"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-secondary dark:text-primary">
+          {"Elysia + oRPC"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Router type-safe con validación Zod 4. Contratos generados automáticamente del backend sin codegen ni pasos de build adicionales. WebSocket para sync en tiempo real."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"Throughput: 10K req/s"}
+        </p>
+      </article>
+
+      {/* Flecha desktop */}
+      <div class="hidden md:flex items-center justify-center border-y border-secondary/20 dark:border-primary/20 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      {/* Flecha mobile */}
+      <div class="flex md:hidden items-center justify-center border-x border-secondary/20 dark:border-primary/20 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+
+      {/* Card 3 */}
+      <article class="border border-secondary/20 dark:border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"Domain Layer"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-secondary dark:text-primary">
+          {"Clean Architecture"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"Módulos independientes: IAM, Catalog, Commerce. Ports y adapters con inversión de dependencias. Separación estricta commands/queries. Domain exceptions como primeras ciudadanas."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"Eval Latency: <8ms"}
+        </p>
+      </article>
+
+      {/* Flecha desktop */}
+      <div class="hidden md:flex items-center justify-center border-y border-secondary/20 dark:border-primary/20 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      {/* Flecha mobile */}
+      <div class="flex md:hidden items-center justify-center border-x border-secondary/20 dark:border-primary/20 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+
+      {/* Card 4 */}
+      <article class="border border-secondary/20 dark:border-primary/20 p-5 space-y-3 flex-1">
+        <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+          {"Persistence"}
+        </span>
+        <h3 class="text-sm uppercase font-semibold tracking-wider text-secondary dark:text-primary">
+          {"LibSQL + Drizzle ORM"}
+        </h3>
+        <p class="text-tertiary text-sm leading-relaxed">
+          {"SQLite local en dispositivo móvil, Turso en cloud. Esquemas unificados con Drizzle ORM. Migrations type-safe. Ledger append-only para trazabilidad de ventas."}
+        </p>
+        <p class="text-[10px] uppercase tracking-wider text-tertiary font-medium pt-2">
+          {"Storage: Edge + Cloud"}
+        </p>
+      </article>
+    </div>
+  </div>
+
+  {/* Decision cards: 3 columnas */}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full xl:max-w-3/4 mx-auto">
+    <article class="border border-secondary/20 dark:border-primary/20 p-6 space-y-4">
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+        {"Decisión 01 · Type Safety"}
+      </span>
+      <h3 class="text-lg font-semibold uppercase tracking-tight text-secondary dark:text-primary">
+        {"TypeScript End-to-End con oRPC"}
+      </h3>
+      <p class="text-tertiary text-sm leading-relaxed">
+        {"Optamos por oRPC frente a tRPC y GraphQL porque genera el contrato cliente directamente desde los routers Elysia sin pasos de build adicionales. Los schemas Zod 4 se comparten entre formularios, API y base de datos, eliminando cualquier posibilidad de divergencia de tipos."}
+      </p>
+      <div class="border-t border-secondary/10 dark:border-primary/10 pt-4 mt-4">
+        <p class="text-xs text-tertiary leading-relaxed">
+          <span class="text-accent font-semibold">{"Impacto: "}</span>
+          {"Cero archivos de tipos generados manualmente. Cambios en el backend se reflejan en el cliente con solo guardar archivo."}
+        </p>
+      </div>
+    </article>
+
+    <article class="border border-secondary/20 dark:border-primary/20 p-6 space-y-4">
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+        {"Decisión 02 · Offline-First"}
+      </span>
+      <h3 class="text-lg font-semibold uppercase tracking-tight text-secondary dark:text-primary">
+        {"SQLite Local con Sincronización Inteligente"}
+      </h3>
+      <p class="text-tertiary text-sm leading-relaxed">
+        {"Cada dispositivo mantiene su propia base SQLite local via LibSQL. Las operaciones se registran en cola local y se sincronizan con el servidor cuando hay conectividad. El algoritmo de resolución de conflictos prioriza el timestamp y el nodo origen."}
+      </p>
+      <div class="border-t border-secondary/10 dark:border-primary/10 pt-4 mt-4">
+        <p class="text-xs text-tertiary leading-relaxed">
+          <span class="text-accent font-semibold">{"Garantía: "}</span>
+          {"Ventas nunca bloqueadas por falta de red. Datos consistentes entre dispositivos del mismo negocio."}
+        </p>
+      </div>
+    </article>
+
+    <article class="border border-secondary/20 dark:border-primary/20 p-6 space-y-4">
+      <span class="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+        {"Decisión 03 · Arquitectura"}
+      </span>
+      <h3 class="text-lg font-semibold uppercase tracking-tight text-secondary dark:text-primary">
+        {"Clean/Hexagonal por Módulo de Negocio"}
+      </h3>
+      <p class="text-tertiary text-sm leading-relaxed">
+        {"En lugar de una arquitectura limpia global, cada módulo (IAM, Catalog, Commerce) encapsula su propio dominio, aplicación e infraestructura. Los containers de dependencias inyectan adapters según el entorno (test, dev, prod)."}
+      </p>
+      <div class="border-t border-secondary/10 dark:border-primary/10 pt-4 mt-4">
+        <p class="text-xs text-tertiary leading-relaxed">
+          <span class="text-accent font-semibold">{"Resultado: "}</span>
+          {"Tests unitarios sin mocks de frameworks. Cambios en un módulo sin afectar otros. Escalabilidad de equipo por boundaries claros."}
+        </p>
+      </div>
+    </article>
+  </div>
+
+</section>

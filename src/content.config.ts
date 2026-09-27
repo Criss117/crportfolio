@@ -5,7 +5,7 @@ import { caseStudySchema } from "./lib/projects.schema";
 const projects = defineCollection({
   loader: glob({
     base: "./src/content/projects",
-    pattern: "**/*.md",
+    pattern: "**/*.{md,mdx}",
   }),
   schema: caseStudySchema,
 });
