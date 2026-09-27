@@ -4,22 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* :root {
-  --accent: oklch(60% 0.15 250);
-  --primary: oklch(0.2178 0 0);
-  --secondary: oklch(0.9821 0 0);
-  --tertiary: oklch(0.3211 0 0);
-  --neutral: oklch(0.9821 0 0);
-}
-
-.dark {
-  --accent: oklch(70% 0.12 250);
-  --primary: oklch(0.9821 0 0);
-  --secondary: oklch(0.12 0 0);
-  --tertiary: oklch(0.72 0 0);
-  --neutral: oklch(0.18 0 0);
-} */
-
 :root {
   --accent: oklch(70% 0.14 255); /* más presencia, sigue pastel */
   --primary: oklch(22% 0.015 255);

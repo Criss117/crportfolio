@@ -19,6 +19,7 @@
 # ══════════════════════════════════════════════════════════════
 
 # ── Identidad básica ─────────────────────────────────────────
+projectName: "fludge"
 title: "Fludge"
 slug: "fludge"
 summary: "Sistema POS full-stack en TypeScript con app móvil React Native y backend Elysia, para gestión de ventas, catálogo e inventario en organizaciones."

@@ -2,6 +2,7 @@
 // import { z } from "zod";
 
 import { z } from "astro/zod";
+import { PROJECTS } from "./constants";
 
 // ── Helpers ──────────────────────────────────────────────────
 
@@ -34,6 +35,7 @@ const galleryImage = imageMeta.extend({
 
 export const caseStudySchema = z.object({
   // Identidad básica
+  projectName: z.enum(PROJECTS),
   title: z.string().min(1),
   slug: z
     .string()
